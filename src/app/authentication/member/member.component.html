@@ -1,5 +1,5 @@
 <app-auth-content>
-    <div class="card mb-3">
+    <div class="card mb-3 animate__animated animate__slideInDown">
         <div class="card-body" style="padding-bottom:0px;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -24,15 +24,15 @@
                     </div>
                 </div>
                 <div class="col-md-9 p-0 m-0">
-                    <p class="p-0 m-0">ระบุปีการศึกษา</p>
+                    <p class="p-0 m-0">เจาะจงปีการศึกษา</p>
                     <div class="form-group" style="margin:0px;padding:0px;">
-                        <input class="form-control" type="text" [(ngModel)]="search" placeholder="ปีการศึกษา">
+                        <input class="form-control" type="text" [(ngModel)]="selected" [typeahead]="states" [adaptivePosition]="true" placeholder="ปีการศึกษา">
                     </div>
                 </div>
             </div>
             <!-- search -->
             <div class="input-group mb-3">
-                <input [(ngModel)]="selected" [typeahead]="states" [adaptivePosition]="true" class="form-control" placeholder="ค้นหา">
+                <input  [(ngModel)]="search" class="form-control" placeholder="ค้นหา">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button">
                         <i class="fa fa-search"> ค้นหา</i>
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-  <div class="card">
+  <div class="card animate__animated animate__slideInDown">
     <!-- member data -->
     <div class="card-body">
       <div class="table-responsive table-hover">
@@ -79,7 +79,7 @@
     <div class="card-footer">
         <div class="row">
             <div class="col-xs-12 col-12">
-              <pagination [totalItems]="155" [rotate]="rotate" [maxSize]="maxSize"></pagination>
+              <pagination previousText="ก่อนหน้า" nextText="ถัดไป" [totalItems]="155" [rotate]="rotate" [maxSize]="maxSize"></pagination>
             </div>
           </div>
     </div>

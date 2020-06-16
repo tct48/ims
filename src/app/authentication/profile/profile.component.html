@@ -1,0 +1,145 @@
+<app-auth-content>
+    <div class="card animate__animated animate__slideInDown">
+        <div class="card-body">
+            <h3>
+                จัดการข้อมูลส่วนตัว
+            </h3>
+            
+            <div class="row">
+                <div class="col-md-10">
+                    <!-- card-1 -->
+                    <div class="card">
+                        <!-- card-header -->
+                        <div class="card-header card-band-pink">
+                            ข้อมูลสถานศึกษา <b>(สังเกตการสอน)</b>
+                        </div>
+                        <!-- card-body -->
+                        <div class="card-body px-3">
+                            <form>
+                                <div class="form-group">
+                                    <input  placeholder="ชื่อสถานศึกษา*" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input  placeholder="ที่อยู่*" class="form-control">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input  placeholder="แขวง/ตำบล*" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input  placeholder="เขต/อำเภอ*" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input  placeholder="จังหวัด*" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input  placeholder="รหัสไปรษณีย์*" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- card-2 -->
+                    <div class="card my-3">
+                        <!-- card-header -->
+                        <div class="card-header card-band-green">
+                            ข้อมูลสถานศึกษา <b>(ออกฝึกสอน)</b>
+                        </div>
+                        <!-- card-body -->
+                        <div class="card-body px-3">
+                            <div class="form-check jumbotron py-2 px-5">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    สถานศึกษาเดียวกันกับที่สังเกตการสอน
+                                </label>
+                              </div>
+                            <form>
+                                <div class="form-group">
+                                    <input  placeholder="ชื่อสถานศึกษา*" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input  placeholder="ที่อยู่*" class="form-control">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input  placeholder="แขวง/ตำบล*" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input  placeholder="เขต/อำเภอ*" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input  placeholder="จังหวัด*" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input  placeholder="รหัสไปรษณีย์*" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- card-3 -->
+                    <div class="card">
+                        <div class="card-header">
+                            ข้อมูลครูผู้ดูแล
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input  placeholder="ชื่อจริง-นามสกุล ครูผู้ดูแล*" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input  placeholder="เบอร์โทรศัพท์*" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- circle-progress -->
+                <div class="col-md-2">
+                    <div class="card ">
+                        <div class="card-header">
+                            ความครบถ้วนของข้อมูล
+                        </div>
+                        <div class="card-body text-center">
+                            <circle-progress
+                                [percent]="85"
+                                [radius]="50"
+                                [outerStrokeColor]="'#009688'"
+                                [animation]="true"
+                                [animationDuration]="1000"
+                                >
+                            </circle-progress>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button class="btn btn-primary">
+                บันทึกข้อมูล
+            </button>
+        </div>
+    </div>
+</app-auth-content>

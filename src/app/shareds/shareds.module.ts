@@ -12,6 +12,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AlertService } from './services/alert.service';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 @NgModule({
@@ -22,7 +23,18 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     ButtonsModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    NgCircleProgressModule.forRoot({
+      "backgroundOpacity": 1,
+      "backgroundStrokeWidth": 0,
+      "radius": 59,
+      "space": 25,
+      "outerStrokeWidth": 8,
+      "innerStrokeWidth":0,
+      "animationDuration": 1000,
+      "showBackground": false,
+      "startFromZero": false
+    })
     
   ],
   exports: [
@@ -35,7 +47,8 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     TooltipModule,
     ButtonsModule,
     TypeaheadModule,
-    PaginationModule
+    PaginationModule,
+    NgCircleProgressModule
 ],
   declarations: [
     AuthContentComponent,

@@ -1,4 +1,6 @@
 export const AuthURL = {
     Dashboard: 'dashboard',
-    Member:'member'
+    Member:'member',
+    CreateMember:'create-member',
+    Profile: 'profile'
 }
