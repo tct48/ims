@@ -1,0 +1,89 @@
+<!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <div class="app-sidebar__user">
+    <img class="rounded-circle mr-2" style="max-width: 45px;" [src]="UserLogin.image" alt="User Image">
+    <!-- <img  class="app-sidebar__user-avatar" style="max-width: 15px;" src="assets/images/no-image-profile.png"
+      alt="User Image"> -->
+    <div class="app-sidebar-ud">
+      <p class="app-sidebar__user-name">
+        <!-- การแสดงข้อความจาก JSON -->
+        {{ UserLogin.firstname }} {{ UserLogin.lastname }}
+      </p>
+      <p class="app-sidebar__user-designation">
+        <small>{{ UserLogin.position }}</small>
+      </p>
+    </div>
+  </div>
+  <ul class="app-menu">
+    <li>
+        <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Dashboard]" routerLinkActive="active">
+          <i class="app-menu__icon fa fa-dashboard"></i>
+          <span class="app-menu__label">แดชบอร์ด</span>
+        </a>
+      </li>
+      <li class="treeview" routerLinkActive="is-expanded">
+        <a class="app-menu__item"  href="#" data-toggle="treeview">
+          <i class="app-menu__icon fa fa-users"></i>
+          <span class="app-menu__label">จัดการสมาชิก</span>
+          <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a class="treeview-item" [routerLink]="['/', AppURL.Authen, AuthURL.Member]" routerLinkActive="active">
+              <i class="icon fa fa-circle-o"></i> รายการสมาชิก
+            </a>
+          </li>
+          <li>
+            <a class="treeview-item"  routerLinkActive="active">
+              <i class="icon fa fa-circle-o"></i> เพิ่มสมาชิกใหม่
+            </a>
+          </li>
+        </ul>
+      </li>
+    <li class="treeview" routerLinkActive="is-expanded">
+      <a class="app-menu__item" href="#" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-user"></i>
+        <span class="app-menu__label">จัดการข้อมูลส่วนตัว</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
+          <a class="treeview-item"  routerLinkActive="active">
+            <i class="icon fa fa-circle-o"></i> เพิ่มข้อมูลสังเกตการสอน
+          </a>
+        </li>
+        <li>
+          <a class="treeview-item" routerLinkActive="active">
+            <i class="icon fa fa-calendar-plus-o"></i> เพิ่มข้อมูลตารางสอน
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li   >
+      <a class="app-menu__item" routerLinkActive="active">
+        <i class="app-menu__icon fa fa-search"></i>
+        <span class="app-menu__label">รายละเอียดสังเกตการสอน</span>
+      </a>
+    </li>
+    <!-- นักศึกษามองเห็น และเข้าได้ -->
+    <li>
+      <a class="app-menu__item"  routerLinkActive="active">
+        <i class="app-menu__icon 	fa fa-flask"></i>
+        <span class="app-menu__label">การทำวิจัยในชั้นเรียน</span>
+      </a>
+    </li>
+    <li>
+      <a class="app-menu__item" routerLinkActive="active">
+        <i class="app-menu__icon fa fa-youtube-play"></i>
+        <span class="app-menu__label">การสอนออนไลน์</span>
+      </a>
+    </li>
+    <li>
+      <a class="app-menu__item" routerLinkActive="active">
+        <i class="app-menu__icon fa fa-commenting-o"></i>
+        <span class="app-menu__label">ประชุมแผนการสอน</span>
+      </a>
+    </li>
+  </ul>
+</aside>
