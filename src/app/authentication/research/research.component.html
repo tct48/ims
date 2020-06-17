@@ -1,0 +1,82 @@
+<app-auth-content>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="mb-0">
+                วิจัยในชั้นเรียน
+            </h3>
+        </div>
+    </div>
+
+    <div class="card my-3">
+        <div class="card-header bolder">
+            เพิ่มข้อมูลวิจัยในชั้นเรียน
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <input  placeholder="วิจัยในชั้นเรียนเรื่อง*" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input  placeholder="เพิ่มไฟล์แนบ*" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fa fa-chain"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="รับลิงก์ที่แชร์ได้*">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary">
+                เพิ่มข้อมูล
+            </button>
+        </div>
+    </div>
+
+    <!-- table -->
+    <div class="card animate__animated animate__slideInDown">
+        <!-- member data -->
+        <div class="card-body">
+          <div class="table-responsive table-hover">
+            <table class="table">
+              <thead class="thead-dark text-center">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">วิจัยในชั้นเรียน</th>
+                  <th scope="col">รายละเอียด</th>
+                  <th scope="col">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center" scope="row" style="vertical-align: middle;">
+                        1
+                  <td style="vertical-align: middle;">การส่งเสริมทักษะการอ่าน (บทที่ 1)</td>
+                  <td style="vertical-align: middle;">...</td>
+                  <td class="text-center" style="vertical-align: middle;">
+                    <button placement="bottom"  tooltip="ดูข้อมูล" class="btn text-center" style="background-color: #5E81AC;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-eye"></i></button>
+                    <button placement="bottom"  tooltip="แก้ไขข้อมูล" class="btn mx-3 text-center" style="background-color: #88c0d0;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-pencil"></i></button>
+                    <button placement="bottom"  tooltip="ลบข้อมูล" class="btn text-center" style="background-color: #ebcb8b;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- pagination -->
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-xs-12 col-12">
+                  <pagination previousText="ก่อนหน้า" nextText="ถัดไป" [totalItems]="155" [rotate]="rotate" [maxSize]="maxSize"></pagination>
+                </div>
+              </div>
+        </div>
+    </div>
+</app-auth-content>

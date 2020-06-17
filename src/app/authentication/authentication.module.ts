@@ -6,15 +6,15 @@ import { SharedModule } from '../shareds/shareds.module';
 import { MemberComponent } from './member/member.component';
 import { CreateMemberComponent } from './member/create-member/create-member.component';
 import { ProfileComponent } from './profile/profile.component';
-
-
+import { ResearchComponent } from './research/research.component';
+import { TeachingComponent } from './teaching/teaching.component';
 
 @NgModule({
-  declarations: [DashboardComponent, MemberComponent, CreateMemberComponent, ProfileComponent],
+  declarations: [DashboardComponent, MemberComponent, CreateMemberComponent, ProfileComponent, ResearchComponent, TeachingComponent],
   imports: [
     CommonModule,
     AuthenticationRouting,
-    SharedModule
+    SharedModule,
   ]
 })
 export class AuthenticationModule { }

@@ -55,15 +55,15 @@
     </li>
     <!-- นักศึกษามองเห็น และเข้าได้ -->
     <li>
-      <a class="app-menu__item"  routerLinkActive="active">
+      <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Research]" routerLinkActive="active">
         <i class="app-menu__icon 	fa fa-flask"></i>
         <span class="app-menu__label">การทำวิจัยในชั้นเรียน</span>
       </a>
     </li>
     <li>
-      <a class="app-menu__item" routerLinkActive="active">
+      <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Teaching]" routerLinkActive="active">
         <i class="app-menu__icon fa fa-youtube-play"></i>
-        <span class="app-menu__label">การสอนออนไลน์</span>
+        <span class="app-menu__label">การฝึกประสบกาณ์วิชาชีพ</span>
       </a>
     </li>
     <li>

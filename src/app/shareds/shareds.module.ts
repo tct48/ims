@@ -5,7 +5,6 @@ import { AuthSidebarComponent } from './components/auth-sidebar/auth-sidebar.com
 import { RouterModule } from '@angular/router';
 
 // component module
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -13,7 +12,6 @@ import { AlertService } from './services/alert.service';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-
 
 @NgModule({
   imports: [
@@ -34,8 +32,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       "animationDuration": 1000,
       "showBackground": false,
       "startFromZero": false
-    })
-    
+    }),
   ],
   exports: [
     FormsModule,
