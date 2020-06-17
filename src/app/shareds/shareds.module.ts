@@ -11,17 +11,42 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AlertService } from './services/alert.service';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { SignaturePadModule } from '@ng-plus/signature-pad';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+// for froala
+import 'froala-editor/js/froala_editor.min.js';
+import 'froala-editor/js/plugins/align.min.js';
+import 'froala-editor/js/plugins/char_counter.min.js';
+import 'froala-editor/js/plugins/code_beautifier.min.js';
+import 'froala-editor/js/plugins/colors.min.js';
+import 'froala-editor/js/plugins/emoticons.min.js';
+import 'froala-editor/js/plugins/font_size.min.js';
+import 'froala-editor/js/plugins/fullscreen.min';
+import 'froala-editor/js/plugins/image.min.js';
+import 'froala-editor/js/plugins/link.min.js';
+import 'froala-editor/js/plugins/lists.min.js';
+import 'froala-editor/js/plugins/paragraph_format.min.js';
+import 'froala-editor/js/plugins/quick_insert.min.js';
+import 'froala-editor/js/plugins/url.min.js';
+import 'froala-editor/js/plugins/video.min.js';
+
 
 @NgModule({
   imports: [
     FormsModule,
     RouterModule,
+    SignaturePadModule,
     ReactiveFormsModule,
     ButtonsModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
     PaginationModule.forRoot(),
+    FroalaEditorModule.forRoot(), 
+    BsDatepickerModule.forRoot(),
+    FroalaViewModule.forRoot(),
     NgCircleProgressModule.forRoot({
       "backgroundOpacity": 1,
       "backgroundStrokeWidth": 0,
@@ -36,6 +61,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
   ],
   exports: [
     FormsModule,
+    SignaturePadModule,
     ReactiveFormsModule,
     AuthContentComponent,
     AuthNavbarComponent,
@@ -45,7 +71,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     ButtonsModule,
     TypeaheadModule,
     PaginationModule,
-    NgCircleProgressModule
+    FroalaEditorModule,
+    FroalaViewModule,
+    BsDatepickerModule,
+    NgCircleProgressModule,
 ],
   declarations: [
     AuthContentComponent,
