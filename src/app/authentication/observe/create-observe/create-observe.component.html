@@ -1,0 +1,96 @@
+<app-auth-content>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="mb-0">
+                เพิ่มข้อมูลสังเกตการสอน
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <nav aria-label="breadcrumb" class="col-md-12 mb-0">
+            <ol class="breadcrumb" style="float: right;">
+                <li class="breadcrumb-item"><a [routerLink]="['/', AppURL.Authen, AuthURL.Observe]">สังเกตการสอน</a></li>
+              <li class="breadcrumb-item active" aria-current="page">เพิ่มข้อมูล</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            ข้อมูลรายละเอียดการสังเกตการสอน
+        </div>
+        <div class="card-body">
+            <form action="">
+                <div class="form-group">
+                    <label>วันที่ฝึกสอน :</label>
+                    <input type="text" placeholder="วันที่สังเกตการสอน*" class="form-control" bsDatepicker>
+                </div>
+                <div class="form-group">
+                    <label>เรื่องที่สอน :</label>
+                    <input type="text" placeholder="วันที่สังเกตการสอน*" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>ระดับชั้น :</label>
+                            <input [(ngModel)]="customSelected" [ngModelOptions]="{standalone: true}" placeholder="ระดับชั้น*" [typeahead]="statesComplex" typeaheadOptionField="name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>จำนวนชั่วโมง :</label>
+                            <input type="number" placeholder="จำนวนชั่วโมง*" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>ชื่อครูผู้สอน :</label>
+                    <input type="text" placeholder="ชื่อครูผู้สอน*" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>เลิอกไฟล์ :</label>
+                    <input type="text" placeholder="เลิอกไฟล์*" class="form-control">
+                </div>
+                <div class="card sub">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>1. บรรยกาศในชั้นเรียนโดยรวม :</label>
+                            <input type="text" placeholder="บรรยกาศในชั้นเรียนโดยรวม*" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>2. การเข้าร่วมกิจกรรมในชั้นเรียน :</label>
+                            <input type="text" placeholder="การเข้าร่วมกิจกรรมในชั้นเรียน*" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>3. กิจกรรมสามารถดึงแนวคิดของนักเรียนได้เพียงใด :</label>
+                            <input type="text" placeholder="กิจกรรมสามารถดึงแนวคิดของนักเรียนได้เพียงใด*" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>4. ปฏิสัมพันธ์ระหว่างครูกับนักเรียน :</label>
+                            <input type="text" placeholder="ปฏิสัมพันธ์ระหว่างครูกับนักเรียน*" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>5. ลักษณะการสื่อสารระหว่างครู กับนักเรียนส่วนใหญ่ :</label>
+                            <input type="text" placeholder="ลักษณะการสื่อสารระหว่างครู กับนักเรียนส่วนใหญ่*" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>6. ลักษณะการตั้งคำถามของครูส่วนใหญ่ :</label>
+                            <input type="text" placeholder="ลักษณะการตั้งคำถามของครูส่วนใหญ่*" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>7. ลักษณะการสรุปบทเรียน :</label>
+                            <input type="text" placeholder="ลักษณะการสรุปบทเรียน*" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" (click)="onSubmit()" style="float: right;">
+                เพิ่มข้อมูล
+            </button>
+        </div>
+    </div>
+</app-auth-content>

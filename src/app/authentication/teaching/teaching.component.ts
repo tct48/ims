@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { listLocales } from 'ngx-bootstrap/chronos';
+import { AlertService } from 'src/app/shareds/services/alert.service';
 
 @Component({
   selector: 'app-teaching',
@@ -9,7 +10,7 @@ import { listLocales } from 'ngx-bootstrap/chronos';
 })
 export class TeachingComponent implements OnInit {
  
-  constructor() {
+  constructor(private alert:AlertService) {
   }
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class TeachingComponent implements OnInit {
   editorContent:string;
 
   onSubmit(){
+    this.alert.success("เพิ่มข้อมูลสำเร็จ !")
     console.log(this.editorContent)
   }
 

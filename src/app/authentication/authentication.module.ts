@@ -8,9 +8,12 @@ import { CreateMemberComponent } from './member/create-member/create-member.comp
 import { ProfileComponent } from './profile/profile.component';
 import { ResearchComponent } from './research/research.component';
 import { TeachingComponent } from './teaching/teaching.component';
+import { ObserveComponent } from './observe/observe.component';
+import { CreateObserveComponent } from './observe/create-observe/create-observe.component';
+import { MeetingComponent } from './meeting/meeting.component';
 
 @NgModule({
-  declarations: [DashboardComponent, MemberComponent, CreateMemberComponent, ProfileComponent, ResearchComponent, TeachingComponent],
+  declarations: [DashboardComponent, MemberComponent, CreateMemberComponent, ProfileComponent, ResearchComponent, TeachingComponent, ObserveComponent, CreateObserveComponent, MeetingComponent],
   imports: [
     CommonModule,
     AuthenticationRouting,

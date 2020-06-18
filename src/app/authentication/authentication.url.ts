@@ -4,5 +4,8 @@ export const AuthURL = {
     CreateMember:'create-member',
     Profile: 'profile',
     Research: 'research',
-    Teaching: 'teaching'
+    Teaching: 'teaching',
+    Observe: 'observe',
+    ObserveCreate: 'observe-create',
+    Meeting: 'meeting'
 }

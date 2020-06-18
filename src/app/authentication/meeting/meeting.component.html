@@ -1,0 +1,36 @@
+<app-auth-content>
+    <div class="card animate__animated animate__slideInDown">
+        <div class="card-header">
+            <h3 class="mb-0">
+                ประชุมแผนการสอน
+            </h3>
+        </div>
+    </div>
+
+    <div class="card my-3">
+        <div class="card-header bolder">
+            เพิ่มข้อมูลประชุมแผนการสอน
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                  <label>วันที่ประชุม :</label>
+                  <input type="text" placeholder="วันที่ประชุม*" class="form-control" bsDatepicker>
+                </div>
+                <div class="form-group">
+                    <label>แนบไฟล์ :</label>
+                    <input type="text" placeholder="แนบไฟล์*" class="form-control" bsDatepicker>
+                </div>
+                <div class="form-group">
+                  <label>รายละเอียด :</label>
+                  <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+                </div>
+            </form>
+        </div> 
+        <div class="card-footer">
+            <button class="btn btn-primary" (click)="onSubmit()">
+                เพิ่มข้อมูล
+            </button>
+        </div>
+    </div>
+</app-auth-content>

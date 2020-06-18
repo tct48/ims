@@ -6,6 +6,9 @@ import { CreateMemberComponent } from './member/create-member/create-member.comp
 import { ProfileComponent } from './profile/profile.component';
 import { ResearchComponent } from './research/research.component';
 import { TeachingComponent } from './teaching/teaching.component';
+import { ObserveComponent } from './observe/observe.component';
+import { CreateObserveComponent } from './observe/create-observe/create-observe.component';
+import { MeetingComponent } from './meeting/meeting.component';
 
 const RouteLists: Routes = [
   { path: '', redirectTo: AuthURL.Dashboard, pathMatch: 'full' },
@@ -14,7 +17,10 @@ const RouteLists: Routes = [
   { path: AuthURL.CreateMember, component: CreateMemberComponent },
   { path: AuthURL.Profile, component:ProfileComponent},
   { path: AuthURL.Research, component:ResearchComponent },
-  { path: AuthURL.Teaching, component: TeachingComponent }
+  { path: AuthURL.Teaching, component: TeachingComponent },
+  { path: AuthURL.Observe, component: ObserveComponent },
+  { path: AuthURL.ObserveCreate, component: CreateObserveComponent },
+  { path: AuthURL.Meeting, component: MeetingComponent }
 ];
 
 export const AuthenticationRouting = RouterModule.forChild(RouteLists);

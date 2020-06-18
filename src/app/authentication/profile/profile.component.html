@@ -15,34 +15,34 @@
                         </div>
                         <!-- card-body -->
                         <div class="card-body px-3">
-                            <form>
+                            <form [formGroup]="form">
                                 <div class="form-group">
-                                    <input  placeholder="ชื่อสถานศึกษา*" class="form-control">
+                                    <input formControlName="name" placeholder="ชื่อสถานศึกษา*" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input  placeholder="ที่อยู่*" class="form-control">
+                                    <input formControlName="address" placeholder="ที่อยู่*" class="form-control">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input  placeholder="แขวง/ตำบล*" class="form-control">
+                                            <input formControlName="subdistrict" placeholder="แขวง/ตำบล*" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input  placeholder="เขต/อำเภอ*" class="form-control">
+                                            <input formControlName="district" placeholder="เขต/อำเภอ*" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input  placeholder="จังหวัด*" class="form-control">
+                                            <input formControlName="province" placeholder="จังหวัด*" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input  placeholder="รหัสไปรษณีย์*" class="form-control">
+                                            <input formControlName="post_code" placeholder="รหัสไปรษณีย์*" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -59,39 +59,39 @@
                         <!-- card-body -->
                         <div class="card-body px-3">
                             <div class="form-check jumbotron py-2 px-5">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'True':'False')" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1" >
                                     สถานศึกษาเดียวกันกับที่สังเกตการสอน
                                 </label>
                               </div>
                             <form>
                                 <div class="form-group">
-                                    <input  placeholder="ชื่อสถานศึกษา*" class="form-control">
+                                    <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="ชื่อสถานศึกษา*" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input  placeholder="ที่อยู่*" class="form-control">
+                                    <input [(ngModel)]="address" [ngModelOptions]="{standalone: true}" placeholder="ที่อยู่*" class="form-control">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input  placeholder="แขวง/ตำบล*" class="form-control">
+                                            <input [(ngModel)]="sub_district" [ngModelOptions]="{standalone: true}" placeholder="แขวง/ตำบล*" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input  placeholder="เขต/อำเภอ*" class="form-control">
+                                            <input [(ngModel)]="district" [ngModelOptions]="{standalone: true}" placeholder="เขต/อำเภอ*" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input  placeholder="จังหวัด*" class="form-control">
+                                            <input [(ngModel)]="province" [ngModelOptions]="{standalone: true}" placeholder="จังหวัด*" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input  placeholder="รหัสไปรษณีย์*" class="form-control">
+                                            <input [(ngModel)]="post_code" [ngModelOptions]="{standalone: true}" placeholder="รหัสไปรษณีย์*" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -106,10 +106,10 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <input  placeholder="ชื่อจริง-นามสกุล ครูผู้ดูแล*" class="form-control">
+                                <input [(ngModel)]="teacher" placeholder="ชื่อจริง-นามสกุล ครูผู้ดูแล*" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input  placeholder="เบอร์โทรศัพท์*" class="form-control">
+                                <input [(ngModel)]="phone"  placeholder="เบอร์โทรศัพท์*" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="card-body text-center">
                             <circle-progress
-                                [percent]="85"
+                                [percent]="percent"
                                 [radius]="50"
                                 [outerStrokeColor]="'#009688'"
                                 [animation]="true"
@@ -137,7 +137,7 @@
         </div>
 
         <div class="card-footer">
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" (click)="onSubmit()">
                 บันทึกข้อมูล
             </button>
         </div>

@@ -1,0 +1,53 @@
+<app-auth-content>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="mb-0">
+                สังเกตการสอน
+            </h3>
+        </div>
+    </div>
+
+    <!-- table -->
+    <div class="card my-3 animate__animated animate__slideInDown">
+        <div class="card-header">
+            <button class="btn btn-primary" style="float: right;" [routerLink]="['/', AppURL.Authen, AuthURL.ObserveCreate]">
+                เพิ่มข้อมูล
+            </button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive table-hover">
+            <table class="table">
+              <thead class="thead-dark text-center">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">รายวิชา</th>
+                  <th scope="col">จำนวน (ชม.)</th>
+                  <th scope="col">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td scope="row" style="vertical-align: middle;">
+                        {{ data | date : 'dd-MMMM-yyyy' }}
+                  <td style="vertical-align: middle;">หลักการเขียนโปรแกรม</td>
+                  <td style="vertical-align: middle;" class="text-right">3</td>
+                  <td class="text-center" style="vertical-align: middle;">
+                    <button placement="bottom"  tooltip="ดูข้อมูล" class="btn text-center" style="background-color: #5E81AC;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-eye"></i></button>
+                    <button placement="bottom"  tooltip="แก้ไขข้อมูล" class="btn mx-3 text-center" style="background-color: #88c0d0;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-pencil"></i></button>
+                    <button placement="bottom"  tooltip="ลบข้อมูล" class="btn text-center" style="background-color: #ebcb8b;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- pagination -->
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-xs-12 col-12">
+                  <pagination previousText="ก่อนหน้า" nextText="ถัดไป" [totalItems]="155" [rotate]="rotate" [maxSize]="maxSize"></pagination>
+                </div>
+              </div>
+        </div>
+    </div>
+</app-auth-content>

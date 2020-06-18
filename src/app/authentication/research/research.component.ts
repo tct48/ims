@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'src/app/shareds/services/alert.service';
 
 @Component({
   selector: 'app-research',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alert:AlertService) { }
 
   ngOnInit(): void {
   }
@@ -16,4 +17,8 @@ export class ResearchComponent implements OnInit {
     rotate = true;
     maxSize = 5;
     status = "ON";
+
+    onSubmit(){
+      this.alert.success("เพิ่มข้อมุลสำเร็จ !")
+    }
 }

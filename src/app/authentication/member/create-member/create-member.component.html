@@ -14,7 +14,7 @@
         </div>
         <!-- card-body -->
         <div class="card-body px-3 py-4 mb-0">
-            <form>
+            <form [formGroup]="form">
                 <div class="row">
                         <!-- ส่วนรูปภาพ -->
                         <div class="col-md-3">
@@ -23,20 +23,20 @@
                         <!-- ส่วนฟิล์ดข้อความ -->
                         <div class="col-md-9">
                             <div class="form-group">
-                                <input  placeholder="อีเมลล์" class="form-control">
+                                <input formControlName="email" placeholder="อีเมลล์" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input  placeholder="รหัสผ่าน" class="form-control">
+                                <input formControlName="password"  placeholder="รหัสผ่าน" class="form-control">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input  placeholder="ชื่อจริง" class="form-control">
+                                        <input formControlName="firstname" placeholder="ชื่อจริง" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input  placeholder="นามสกุล" class="form-control">
+                                        <input formControlName="lastname"  placeholder="นามสกุล" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -45,26 +45,26 @@
                                 <div class="col-md-6">
                                     <p class="text-muted mb-0">ระบุสาขาวิชา</p>
                                     <div class="btn-group"  style="margin:0px;padding:0px;">
-                                        <label class="btn btn-primary px-3 p-1 m-0" [ngModelOptions]="{standalone: true}" [(ngModel)]="classroom"
+                                        <label class="btn btn-primary px-3 p-1 m-0" formControlName="classroom" [(ngModel)]="classroom"
                                                 btnRadio="CED" tabindex="0"  role="button">CED</label>
-                                        <label class="btn btn-primary px-3 p-1 m-0" [ngModelOptions]="{standalone: true}" [(ngModel)]="classroom"
+                                        <label class="btn btn-primary px-3 p-1 m-0" formControlName="classroom" [(ngModel)]="classroom"
                                                 btnRadio="TCT" tabindex="0" role="button">TCT</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <p class="text-muted mb-0">สิทธิ์การใช้งาน</p>
                                     <div class="btn-group"  style="margin:0px;padding:0px;">
-                                        <label class="btn btn-secondary px-3 p-1 m-0" [ngModelOptions]="{standalone: true}" [(ngModel)]="role"
-                                                btnRadio="นักศึกษา" tabindex="0"  role="button">CED</label>
-                                        <label class="btn btn-secondary px-3 p-1 m-0" [ngModelOptions]="{standalone: true}" [(ngModel)]="role"
-                                                btnRadio="ครูอาจารย์" tabindex="0" role="button">TCT</label>
+                                        <label class="btn btn-secondary px-3 p-1 m-0" formControlName="role" [(ngModel)]="role"
+                                                btnRadio="นักศึกษา" tabindex="0"  role="button">นักศึกษา</label>
+                                        <label class="btn btn-secondary px-3 p-1 m-0" formControlName="role" [(ngModel)]="role"
+                                                btnRadio="ครูอาจารย์" tabindex="0" role="button">ครูอาจารย์</label>
                                     </div>
                                 </div>
                                 
                             </div>
                             
                             <div class="form-group" style="margin:0px;padding:0px;">
-                                <input class="form-control" type="text" [(ngModel)]="selected" [typeahead]="states" [adaptivePosition]="true" placeholder="ปีการศึกษา">
+                                <input class="form-control" type="text" formControlName="year" [(ngModel)]="selected" [typeahead]="states" [adaptivePosition]="true" placeholder="ปีการศึกษา">
                             </div>
                         </div>
                 </div>
@@ -73,7 +73,7 @@
 
         <!-- card footer -->
         <div class="card-footer">
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" (click)="onSubmit()">
                 <i class="fa fa-save"></i> เพิ่มข้อมูลสมาชิก
             </button>
         </div>
