@@ -1,1 +1,59 @@
-<p>register works!</p>
+<section class="material-half-bg">
+    <div class="cover"></div>
+  </section>
+  <section class="login-content">
+    <div class="logo">
+      <h2 style="text-align: center;">ระบบจัดการฝึกประสบการณ์วิชาชีพ</h2>
+    </div>
+    <div class="login-box p-3" style="height: auto;">
+        <h3 class="text-center my-2 mb-3">
+            สมัครสมาชิก
+        </h3>
+        <form>
+            <div class="form-group">
+                <label class="control-label">อีเมลล์</label>
+                <input placeholder="อีเมลล์" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="control-label">รหัสผ่าน</label>
+                <input placeholder="รหัสผ่าน" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="control-label">ชื่อจริง</label>
+                <input placeholder="ชื่อจริง" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="control-label">นามสกุล</label>
+                <input placeholder="นามสกุล" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="control-label">ปีการศึกษา</label>
+                <input placeholder="ปีการศึกษา" class="form-control">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">สาขาวิชา</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="inlineRadioOptions" type="radio" value="TCT">
+                        <label class="form-check-label" for="inlineCheckbox1">TCT</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="inlineRadioOptions" type="radio" value="CED">
+                        <label class="form-check-label" for="inlineCheckbox2">CED</label>
+                    </div>
+                </div>
+            </div>
+            <button (click)="onSubmit()" class="btn btn-primary col-md-12 my-3">
+                สมัครสมาชิก
+            </button>
+            <button  [routerLink]="['/', Url.Login]" class="btn btn-secondary col-md-12 mb-3">
+                กลับไปหน้าล๊อกอิน
+            </button>
+        </form>
+    </div>
+  </section>
+  

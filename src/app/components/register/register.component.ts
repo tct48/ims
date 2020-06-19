@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   password: string;
 
   Url = AppURL;
+  classroom:string;
 
   checkModel: any = { left: false, middle: true, right: false };
   // สร้างฟอร์ม
@@ -30,5 +31,9 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
+  }
+
+  onSubmit(){
+    
   }
 }

@@ -39,7 +39,7 @@ import 'froala-editor/js/plugins/video.min.js';
     FormsModule,
     RouterModule,
     SignaturePadModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl:'never'}),
     ButtonsModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
