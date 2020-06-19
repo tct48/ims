@@ -33,6 +33,11 @@ import 'froala-editor/js/plugins/quick_insert.min.js';
 import 'froala-editor/js/plugins/url.min.js';
 import 'froala-editor/js/plugins/video.min.js';
 
+// File upload module
+import {FileUploadModule} from 'ng2-file-upload';
+// Cloudinary module
+import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
 
 @NgModule({
   imports: [
@@ -40,6 +45,7 @@ import 'froala-editor/js/plugins/video.min.js';
     RouterModule,
     SignaturePadModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl:'never'}),
+    FileUploadModule,
     ButtonsModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
@@ -83,7 +89,6 @@ import 'froala-editor/js/plugins/video.min.js';
   ],
   providers: [
     AlertService,
-
   ],
 })
 export class SharedModule {}

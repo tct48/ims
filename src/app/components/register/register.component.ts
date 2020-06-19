@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AppURL } from 'src/app/app.url';
+import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+import { Cloudinary } from '@cloudinary/angular-5.x';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -8,11 +11,14 @@ import { AppURL } from 'src/app/app.url';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private builder: FormBuilder) {
+  constructor(
+    private builder: FormBuilder,
+  ) {
     this.initialCreateFormData();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    };
 
   form: any;
   password: string;
@@ -34,6 +40,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    
   }
+
+  // add new
 }
