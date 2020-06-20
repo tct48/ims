@@ -1,9 +1,20 @@
-import { Component, OnInit, Input, NgZone } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Input, NgZone, Directive } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AppURL } from 'src/app/app.url';
-import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+
+import { JsonPipe } from '@angular/common';
+
 import { Cloudinary } from '@cloudinary/angular-5.x';
+import {
+  FileUploader,
+  FileUploaderOptions,
+  ParsedResponseHeaders,
+} from 'ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
+import { AlertService } from 'src/app/shareds/services/alert.service';
+
+// const URL = '/api/';
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
   selector: 'app-register',
@@ -13,34 +24,41 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
+    private alert: AlertService,
   ) {
-    this.initialCreateFormData();
+    this.initialForm();
   }
 
-  ngOnInit(): void {
-    };
-
-  form: any;
-  password: string;
+  ngOnInit():void{
+    
+  }
 
   Url = AppURL;
-  classroom:string;
+  form: FormGroup;
+  role: string;
 
-  checkModel: any = { left: false, middle: true, right: false };
+  positions: Position[] = [{ value: 'CED' }, { value: 'TCT' }];
+
+  // ลงทะเบียน
+  onSubmit() {
+    if (this.form.invalid) return this.alert.something_wrong();
+    // ส่งข้อมูลหา Server
+
+  }
+
   // สร้างฟอร์ม
-  private initialCreateFormData() {
+  initialForm(){
     this.form = this.builder.group({
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      year: ['', [Validators.required]],
-      position: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-    });
+      email:['', Validators.required],
+      password:['', Validators.required],
+      firstname:['', Validators.required],
+      lastname: ['', Validators.required],
+      classroom: ['', Validators.required],
+      role: ['', Validators.required],
+      year: ['', Validators.required]
+    })
   }
-
-  onSubmit(){
-  }
-
-  // add new
+}
+interface Position {
+  value: string;
 }

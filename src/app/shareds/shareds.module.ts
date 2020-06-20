@@ -15,6 +15,7 @@ import { SignaturePadModule } from '@ng-plus/signature-pad';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 // for froala
 import 'froala-editor/js/froala_editor.min.js';
@@ -32,12 +33,8 @@ import 'froala-editor/js/plugins/paragraph_format.min.js';
 import 'froala-editor/js/plugins/quick_insert.min.js';
 import 'froala-editor/js/plugins/url.min.js';
 import 'froala-editor/js/plugins/video.min.js';
-
-// File upload module
-import {FileUploadModule} from 'ng2-file-upload';
-// Cloudinary module
-import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-5.x';
-import * as  Cloudinary from 'cloudinary-core';
+import { MemberService } from './services/member.service';
+import { DateAgoPipe } from '../pipes/date-ago.pipe';
 
 @NgModule({
   imports: [
@@ -45,7 +42,6 @@ import * as  Cloudinary from 'cloudinary-core';
     RouterModule,
     SignaturePadModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl:'never'}),
-    FileUploadModule,
     ButtonsModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
@@ -53,6 +49,7 @@ import * as  Cloudinary from 'cloudinary-core';
     FroalaEditorModule.forRoot(), 
     BsDatepickerModule.forRoot(),
     FroalaViewModule.forRoot(),
+    ProgressbarModule.forRoot(),
     NgCircleProgressModule.forRoot({
       "backgroundOpacity": 1,
       "backgroundStrokeWidth": 0,
@@ -78,10 +75,12 @@ import * as  Cloudinary from 'cloudinary-core';
     TypeaheadModule,
     PaginationModule,
     FroalaEditorModule,
+    ProgressbarModule,
     FroalaViewModule,
     BsDatepickerModule,
     NgCircleProgressModule,
 ],
+
   declarations: [
     AuthContentComponent,
     AuthNavbarComponent,
@@ -89,6 +88,7 @@ import * as  Cloudinary from 'cloudinary-core';
   ],
   providers: [
     AlertService,
+    MemberService
   ],
 })
 export class SharedModule {}

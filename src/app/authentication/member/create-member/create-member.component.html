@@ -1,16 +1,24 @@
 <app-auth-content>
     <div class="card mb-3 animate__animated animate__slideInDown">
         <div class="card-body px-3 py-2 mb-0">
+            <nav *ngIf="_id" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item text-primary pointer" [routerLink]="['/',AppURL.Authen,AuthURL.Member]">จัดการสมาชิก</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ firstname }} {{ lastname }}</li>
+                </ol>
+            </nav>
             <h3 class="mb-0">
-                เพิ่มสมาชิกใหม่
+                {{ title }}
             </h3>
         </div>
     </div>
 
     <div class="card mb-3 animate__animated animate__slideInDown">
         <!-- card-head -->
-        <div class="card-header">
+        <div class="card-header" style="vertical-align: middle;">
             ข้อมูลนักศึกษา
+            <span style="float:right" class="badge badge-pill badge-success">สาขา : {{ classroom }}</span>
+            <span style="float:right" class="badge badge-pill badge-secondary mx-2">สิทธิ์การใช้งาน : {{ role }}</span>
         </div>
         <!-- card-body -->
         <div class="card-body px-3 py-4 mb-0">
@@ -18,15 +26,16 @@
                 <div class="row">
                         <!-- ส่วนรูปภาพ -->
                         <div class="col-md-3">
-                            <img src="assets/images/images.png" class="img-fluid img-thumbnail">
+                            <!-- <img src="assets/images/images.png"  class="img-fluid img-thumbnail"> -->
+                            <img [src]="image" class="img-fluid img-thumbnail" alt="">
                         </div>
                         <!-- ส่วนฟิล์ดข้อความ -->
                         <div class="col-md-9">
                             <div class="form-group">
                                 <input formControlName="email" placeholder="อีเมลล์" class="form-control">
                             </div>
-                            <div class="form-group">
-                                <input formControlName="password"  placeholder="รหัสผ่าน" class="form-control">
+                            <div *ngIf="!_id" class="form-group">
+                                <input formControlName="password" placeholder="รหัสผ่าน" class="form-control">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -42,29 +51,19 @@
                             </div>
                             
                             <div class="form-group" style="margin:0px;padding:0px;">
-                                <input class="form-control" type="text" formControlName="year"   [(ngModel)]="selected" [typeahead]="states" [adaptivePosition]="true" placeholder="ปีการศึกษา">
+                                <input class="form-control" type="text" formControlName="year" [typeaheadMinLength]="0"  [(ngModel)]="selected" [typeahead]="states" [adaptivePosition]="true" placeholder="ปีการศึกษา">
                             </div>
                             
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <p class="text-muted mb-0">ระบุสาขาวิชา</p>
                                     <div class="btn-group"  style="margin:0px;padding:0px;">
-                                        <label class="btn btn-primary px-3 p-1 m-0" formControlName="classroom"
+                                        <label class="btn btn-primary px-3 p-1 m-0" formControlName="classroom" [(ngModel)]="classroom"
                                                 btnRadio="CED" tabindex="0"  role="button">CED</label>
-                                        <label class="btn btn-primary px-3 p-1 m-0" formControlName="classroom" 
+                                        <label class="btn btn-primary px-3 p-1 m-0" formControlName="classroom" [(ngModel)]="classroom" 
                                                 btnRadio="TCT" tabindex="0" role="button">TCT</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <p class="text-muted mb-0">สิทธิ์การใช้งาน</p>
-                                    <div class="btn-group"  style="margin:0px;padding:0px;">
-                                        <label class="btn btn-secondary px-3 p-1 m-0" formControlName="role" [(ngModel)]="role"
-                                                btnRadio="นักศึกษา" tabindex="0"  role="button">นักศึกษา</label>
-                                        <label class="btn btn-secondary px-3 p-1 m-0" formControlName="role" [(ngModel)]="role"
-                                                btnRadio="ครูอาจารย์" tabindex="0" role="button">ครูอาจารย์</label>
-                                    </div>
-                                </div>
-                                
                             </div>
                         </div>
                 </div>
@@ -73,8 +72,11 @@
 
         <!-- card footer -->
         <div class="card-footer">
-            <button class="btn btn-primary" (click)="onSubmit()">
+            <button *ngIf="!_id" class="btn btn-primary" (click)="onSubmit()">
                 <i class="fa fa-save"></i> เพิ่มข้อมูลสมาชิก
+            </button>
+            <button *ngIf="_id" class="btn btn-primary" (click)="onUpdate()">
+                <i class="fa fa-save"></i> แก้ไขข้อมูลสมาชิก
             </button>
         </div>
     </div>

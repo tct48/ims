@@ -591,15 +591,15 @@
   /***/
   function _(module, exports, __webpack_require__) {
     __webpack_require__(
-    /*! D:\ketar\ims\ims\src\styles.css */
+    /*! D:\ketar\ims\src\styles.css */
     "./src/styles.css");
 
     __webpack_require__(
-    /*! D:\ketar\ims\ims\node_modules\froala-editor\css\froala_editor.pkgd.min.css */
+    /*! D:\ketar\ims\node_modules\froala-editor\css\froala_editor.pkgd.min.css */
     "./node_modules/froala-editor/css/froala_editor.pkgd.min.css");
 
     module.exports = __webpack_require__(
-    /*! D:\ketar\ims\ims\node_modules\froala-editor\css\froala_style.min.css */
+    /*! D:\ketar\ims\node_modules\froala-editor\css\froala_style.min.css */
     "./node_modules/froala-editor/css/froala_style.min.css");
     /***/
   }

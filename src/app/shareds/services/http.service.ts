@@ -14,7 +14,7 @@ export class HttpService{
 
     }
 
-    private address: string = "https://backend-rank-game.herokuapp.com/";
+    private address: string = "https://backend-ims.herokuapp.com/";
 
     requestGet(url:string, accessToken?:string){
         return this.http.get(`${this.address}${url}`,{
@@ -35,7 +35,7 @@ export class HttpService{
     }
 
     requestDelete(url:string, id:any){
-        return this.http.delete(`${this.address}${url}`)
+        return this.http.delete(`${this.address}${url}`+`/`+`${id}`)
             .pipe(catchError(err=>this.handelError(err)));
     }
 

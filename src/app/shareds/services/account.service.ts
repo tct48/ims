@@ -103,6 +103,7 @@ export interface IAccount {
   academy?:string;
   telephone?:string;
   year?:Number;
+  classroom?:string;
 }
 
 // Service interface การประเมินผลการสอน
