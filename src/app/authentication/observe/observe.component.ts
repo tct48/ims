@@ -49,8 +49,15 @@ export class ObserveComponent implements OnInit {
       }else{
         this.total_hour = result.totalHour * 100 /12;
       }
+    })
+  }
 
-      console.log(result);
+  view_item:any;
+
+  onView(_id:string){
+    this.observer.getObserveDetailByID(_id).then(result=>{
+      this.view_item = result.item;
+      console.log(result)
     })
   }
 
@@ -58,6 +65,7 @@ export class ObserveComponent implements OnInit {
     this.observer.deleteObserveDetail(id).then(result=>{
       this.alert.success("ลบข้อมูลสำเร็จ!");
       this.loadObserver();
+      this.view_item = null;
     })
   }
 }

@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <div class="card my-3">
+    <div class="card my-3" *ngIf="admin==true">
         <div class="card-header bolder">
             เพิ่มข้อมูลประชุมแผนการสอน
         </div>
@@ -37,7 +37,6 @@
             <button placement="bottom" (click)="onDelete(data._id)"  tooltip="ลบข้อมูล" class="btn text-center" style="float:right;background-color: #ebcb8b;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-trash"></i></button>
           </h5>
         </div>
-        <div class="card-body" [innerHTML]="data.message">
-        </div>
+        <div class="card-body" [froalaView]="data.message"></div>
       </div>
 </app-auth-content>

@@ -16,6 +16,7 @@ import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5
 import { Cloudinary } from 'cloudinary-core'
 import { FileUploadModule } from "ng2-file-upload";
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     DateAgoPipe
   ],
   imports: [
+    CommonModule, 
     BrowserModule,
     AppRouting,
     HttpClientModule,

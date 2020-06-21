@@ -12,25 +12,29 @@
             เพิ่มข้อมูลวิจัยในชั้นเรียน
         </div>
         <div class="card-body">
-            <form>
+            <form [formGroup]="form">
                 <div class="form-group">
-                    <input  placeholder="วิจัยในชั้นเรียนเรื่อง*" class="form-control">
+                  <label>วิจัยในชั้นเรียนเรื่อง :</label>
+                    <input formControlName="title"  placeholder="วิจัยในชั้นเรียนเรื่อง*" class="form-control">
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input  placeholder="เพิ่มไฟล์แนบ*" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1"><i class="fa fa-chain"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="รับลิงก์ที่แชร์ได้*">
-                        </div>
-                    </div>
+                <div class="form-group">
+                  <label>บทที่ :</label>
+                    <input formControlName="chapter" type="number"  placeholder="บทที่*" class="form-control">
                 </div>
+                  <div class="form-group">
+                    <label>ลิงก์ที่ใช้เปิดไฟล์งาน :</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-chain"></i></span>
+                      </div>
+                      <input formControlName="url" type="text" class="form-control" placeholder="รับลิงก์ที่แชร์ได้*">
+                    </div>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label>รายละเอียด :</label>
+                    <div formControlName="detail" [froalaEditor] [(froalaModel)]="editorContent"></div>
+                  </div>
             </form>
         </div>
         <div class="card-footer">
@@ -50,20 +54,30 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">วิจัยในชั้นเรียน</th>
-                  <th scope="col">รายละเอียด</th>
+                  <th scope="col">สถานะ</th>
                   <th scope="col">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let data of items;">
                   <td class="text-center" scope="row" style="vertical-align: middle;">
                         1
-                  <td style="vertical-align: middle;">การส่งเสริมทักษะการอ่าน (บทที่ 1)</td>
-                  <td style="vertical-align: middle;">...</td>
+                  <td style="vertical-align: middle;">{{ data.title }} (บทที่ {{ data.chapter }})</td>
+                  <td style="vertical-align: middle;">
+                    <button [ngClass]="data.status==0?'badge-dark':'badge-success'" (click)="onChangeStatus(data._id,data.status)" class="badge badge-pill pointer">
+                      <span *ngIf="data.status==0">
+                        <i class="fa fa-times"></i> 
+                        ยังไม่ตรวจ
+                      </span>
+                      <span *ngIf="data.status==1">
+                        <i class="fa fa-check"></i>
+                        ตรวจแล้ว
+                      </span>
+                    </button>
+                  </td>
                   <td class="text-center" style="vertical-align: middle;">
-                    <button placement="bottom"  tooltip="ดูข้อมูล" class="btn text-center" style="background-color: #5E81AC;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-eye"></i></button>
-                    <button placement="bottom"  tooltip="แก้ไขข้อมูล" class="btn mx-3 text-center" style="background-color: #88c0d0;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-pencil"></i></button>
-                    <button placement="bottom"  tooltip="ลบข้อมูล" class="btn text-center" style="background-color: #ebcb8b;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-trash"></i></button>
+                    <button placement="bottom" (click)="onView(data._id)" tooltip="ดูข้อมูล" class="btn text-center mr-3" style="background-color: #5E81AC;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-eye"></i></button>
+                    <button placement="bottom" (click)="onDelete(data._id)" tooltip="ลบข้อมูล" class="btn text-center" style="background-color: #ebcb8b;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>
@@ -72,11 +86,21 @@
         </div>
         <!-- pagination -->
         <div class="card-footer">
-            <div class="row">
-                <div class="col-xs-12 col-12">
-                  <pagination previousText="ก่อนหน้า" nextText="ถัดไป" [totalItems]="155" [rotate]="rotate" [maxSize]="maxSize"></pagination>
-                </div>
-              </div>
+          <p class="text-bold text-right">
+            จำนวนทั้งสิ้น {{ total_items }}
+          </p>
         </div>
+    </div>
+
+    <div *ngIf="view_item" class="card my-3">
+      <div class="card-header">
+        {{ view_item.title }}
+      </div>
+      <div class="card-body">
+        <p>
+          <a [href]="view_item.url" target="_blank" class="text-success">คลิกเพื่อเปิดไฟล์</a>
+        </p>
+        <div class="card-body" [froalaView]="view_item.detail"></div>
+      </div>
     </div>
 </app-auth-content>

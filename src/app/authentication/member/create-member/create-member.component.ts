@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/shareds/services/alert.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MemberService, IMember } from 'src/app/shareds/services/member.service';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from '../../authentication.url';
+import { IRoleAccount, AccountService } from 'src/app/shareds/services/account.service';
+import { AuthenService } from 'src/app/shareds/services/authen.service';
 
 @Component({
   selector: 'app-create-member',
@@ -18,9 +20,16 @@ export class CreateMemberComponent implements OnInit {
     private builder:FormBuilder,
     private alert:AlertService,
     private member:MemberService,
-    private activateRouter: ActivatedRoute
+    private activateRouter: ActivatedRoute,
+    private account : AccountService,
+    private authen: AuthenService,
+    private router: Router
   ) { 
-    
+    this.account.getUserLogin(this.authen.getAuthenticated()).then(result=>{
+      if(result.role==2){
+      this.admin = true;
+    }
+    })
     this.activateRouter.queryParams.forEach(params => {
       this._id = params.id;
       if(this._id){
@@ -45,6 +54,8 @@ export class CreateMemberComponent implements OnInit {
     '2564'
   ];
 
+  admin:boolean=false;
+
   classroom:string;
   role:string;
   search:string;
@@ -56,6 +67,8 @@ export class CreateMemberComponent implements OnInit {
   form;
   firstname:string;
   lastname:string;
+
+  detail:any;
 
   initialForm(){
     this.form = this.builder.group({
@@ -78,6 +91,11 @@ export class CreateMemberComponent implements OnInit {
     })
   }
 
+  onLocation(name:string){
+    var url: string = 'https://www.google.co.th/maps/search/' + location;
+    window.open(url, '_blank');
+  }
+
   loadUpdateForm(){
     this.member.getMemberByID(this._id).then(result=>{
       this.form.controls['email'].setValue(result.email)
@@ -88,7 +106,33 @@ export class CreateMemberComponent implements OnInit {
       this.image = result.image
       this.firstname = result.firstname;
       this.lastname = result.lastname;
+
+      this.detail = result.detail;
+
+      if(result.role==1){
+        this.role="นักศึกษา"
+      }else{
+        this.role="ครูอาจารย์"
+      }
     })
+  }
+
+  onObserve(_id:string){
+    this.router.navigate(['', AppURL.Authen, AuthURL.Observe], {
+      queryParams: { id: _id },
+    });
+  }
+
+  onTeaching(_id:string){
+    this.router.navigate(['', AppURL.Authen, AuthURL.Teaching], {
+      queryParams: { id: _id },
+    });
+  }
+
+  onResearch(_id:string){
+    this.router.navigate(['', AppURL.Authen, AuthURL.Research], {
+      queryParams: { id: _id },
+    });
   }
 
   onSubmit(){

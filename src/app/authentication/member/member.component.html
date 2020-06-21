@@ -52,6 +52,7 @@
               <th scope="col">ชื่อ</th>
               <th scope="col">สถานที่ฝึกสอน</th>
               <th scope="col">ใช้งานล่าสุด</th>
+              <th scope="col">เปลี่ยนสิทธิ์การใช้งาน</th>
               <th scope="col">&nbsp;</th>
             </tr>
           </thead>
@@ -69,13 +70,22 @@
                 <span *ngIf="data.academy">
                   {{ data.academy }}
                 </span>
-                <span *ngIf="!data.academy">
-                  ไม่มีข้อมูล
+                <span *ngIf="!data.detail">
+                  ไม่กรอกข้อมูล
                 </span>
-                <i *ngIf="data.academy" (click)="onLocation('data.academy')" class="fa fa-map-marker bolder pointer text-success"></i>
+                <span *ngIf="data.detail">
+                  {{ data.detail.teaching.name2 }}
+                </span>
+                <i *ngIf="data.detail" (click)="onLocation(data.detail.teaching.name2)" class="fa fa-map-marker bolder pointer text-success"></i>
               </td>
               <td style="vertical-align: middle;">
                 {{data.updated | date:'dd/MMMM/yyyy (HH:MM a)'}}
+              </td>
+              <td style="vertical-align: middle;" class="text-center">
+                <button [ngClass]="data.role==1?'badge-dark':'badge-info'" (click)="onChangeRole(data._id,data.role)" class="badge badge-pill pointer">
+                  <span *ngIf="data.role==1">นักศึกษา</span>
+                  <span *ngIf="data.role==2">ครูอาจารย์</span>
+                </button>
               </td>
               <td class="text-center" style="vertical-align: middle;">
                 <button placement="bottom" (click)="onGoToUpdateMember(data._id)"  tooltip="ดูข้อมูล" class="btn text-center" style="background-color: #5E81AC;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-eye"></i></button>

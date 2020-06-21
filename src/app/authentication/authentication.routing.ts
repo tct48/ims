@@ -10,19 +10,21 @@ import { ObserveComponent } from './observe/observe.component';
 import { CreateObserveComponent } from './observe/create-observe/create-observe.component';
 import { MeetingComponent } from './meeting/meeting.component';
 import { ViewTeachingComponent } from './teaching/view-teaching/view-teaching.component';
+import { UserRoleGuard } from '../guard/user-role.guard';
+import { IRoleAccount } from '../shareds/services/account.service';
 
 const RouteLists: Routes = [
   { path: '', redirectTo: AuthURL.Dashboard, pathMatch: 'full' },
   { path: AuthURL.Dashboard, component: DashboardComponent },
-  { path: AuthURL.Member, component: MemberComponent },
-  { path: AuthURL.CreateMember, component: CreateMemberComponent },
-  { path: AuthURL.Profile, component:ProfileComponent},
-  { path: AuthURL.Research, component:ResearchComponent },
-  { path: AuthURL.Teaching, component: TeachingComponent },
-  { path: AuthURL.Observe, component: ObserveComponent },
-  { path: AuthURL.ObserveCreate, component: CreateObserveComponent },
-  { path: AuthURL.Meeting, component: MeetingComponent },
-  { path: AuthURL.TeachingView, component: ViewTeachingComponent }
+  { path: AuthURL.Member, component: MemberComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.ครูอาจารย์, IRoleAccount.ผู้ดูแลระบบ] } },
+  { path: AuthURL.CreateMember, component: CreateMemberComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.ครูอาจารย์, IRoleAccount.ผู้ดูแลระบบ] } },
+  { path: AuthURL.Profile, component: ProfileComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.นักศึกษา] } },
+  { path: AuthURL.Research, component: ResearchComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.ครูอาจารย์, IRoleAccount.นักศึกษา] } },
+  { path: AuthURL.Teaching, component: TeachingComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.ครูอาจารย์, IRoleAccount.นักศึกษา] }  },
+  { path: AuthURL.Observe, component: ObserveComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.ครูอาจารย์, IRoleAccount.นักศึกษา] }  },
+  { path: AuthURL.ObserveCreate, component: CreateObserveComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.นักศึกษา] }  },
+  { path: AuthURL.Meeting, component: MeetingComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.ครูอาจารย์, IRoleAccount.นักศึกษา] }  },
+  { path: AuthURL.TeachingView, component: ViewTeachingComponent, canActivate: [UserRoleGuard], data: { roles:[IRoleAccount.ครูอาจารย์, IRoleAccount.นักศึกษา] }  },
 ];
 
 export const AuthenticationRouting = RouterModule.forChild(RouteLists);

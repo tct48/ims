@@ -6,7 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { OnlineLearningService } from 'src/app/shareds/services/online-learning.service';
 import { AccountService } from 'src/app/shareds/services/account.service';
 import { AuthenService } from 'src/app/shareds/services/authen.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from '../authentication.url';
 
@@ -22,13 +22,23 @@ export class TeachingComponent implements OnInit {
     private teaching: OnlineLearningService,
     private account: AccountService,
     private authen: AuthenService,
-    private router: Router
+    private router: Router,
+    private activateRote: ActivatedRoute,
   ) {
+    this.activateRote.queryParams.forEach(params => {
+      this._id = params.id;
+      if(this._id){
+        this.loadTeaching(this._id)
+      }else{
+        this.loadTeaching();
+      }
+    })
+    
     this.initialForm();
-    this.loadTeaching();
   }
 
   ngOnInit(): void {}
+  _id:string;
 
   // pagination
   rotate = true;
@@ -91,7 +101,14 @@ export class TeachingComponent implements OnInit {
     })
   }
 
-  loadTeaching(){
+  loadTeaching(_id?:string){
+    if(!_id){
+      this.teaching.getOnlineLearning(_id,this.authen.getAuthenticated()).then(result=>{
+        this.items = result.items;
+        this.total_items = result.totalItems;
+      })
+      return;
+    }
     this.teaching.getOnlineLearning(this.account.UserLogin._id,this.authen.getAuthenticated()).then(result=>{
       this.items = result.items;
       this.total_items = result.totalItems;

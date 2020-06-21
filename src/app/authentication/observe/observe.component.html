@@ -43,9 +43,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of items;">
-              <td scope="row" style="vertical-align: middle;">
-                {{ data.observe_date | date:'dd/MMMM/yyyy (HH:MM a)'}}
+            <tr *ngFor="let data of items;let i = index;">
+              <td scope="row" class="text-center" style="vertical-align: middle;">
+                  {{ i+1 }}
               </td>
               <td style="vertical-align: middle;">
                 {{ data.subject }} 
@@ -58,7 +58,8 @@
                 <button
                   placement="bottom"
                   tooltip="ดูข้อมูล"
-                  class="btn text-center"
+                  class="btn text-center mx-3"
+                  (click)="onView(data._id)"
                   style="
                     background-color: #5e81ac;
                     color: white;
@@ -66,18 +67,6 @@
                   "
                 >
                   <i class="fa fa-eye"></i>
-                </button>
-                <button
-                  placement="bottom"
-                  tooltip="แก้ไขข้อมูล"
-                  class="btn mx-3 text-center"
-                  style="
-                    background-color: #88c0d0;
-                    color: white;
-                    padding: 6px 4px 6px 8px;
-                  "
-                >
-                  <i class="fa fa-pencil"></i>
                 </button>
                 <button
                   placement="bottom"
@@ -102,6 +91,38 @@
     <div class="card-footer">
       <p class="text-bold text-right">
         จำนวนทั้งสิ้น {{ total_items }}
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="view_item" class="card mb-3">
+    <div class="card-header">
+      รายละเอียดสังเกตการสอน
+    </div>
+    <div class="card-body">
+      <p>
+        วันที่ : <br>
+        <span class="text-success">
+          {{ view_item.observe_date | date:'dd-MMMM-yyyy' }}
+        </span>
+      </p>
+      <p>
+        วิชาที่สังเกต : <br>
+        <span class="text-success">
+          {{ view_item.subject }}
+        </span>
+      </p>
+      <p>
+        เรื่องที่สอน : <br>
+        <span class="text-success">
+          ({{ view_item.title }})
+        </span>
+      </p>
+      <p>
+        ครูผู้สอน : <br>
+        <span class="text-success">
+          {{ view_item.teacher_name }}
+        </span>
       </p>
     </div>
   </div>

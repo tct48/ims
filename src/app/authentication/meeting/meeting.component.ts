@@ -20,6 +20,12 @@ export class MeetingComponent implements OnInit {
     private account: AccountService,
     private meeting: MeetingService
   ) {
+    this.account.getUserLogin(this.authen.getAuthenticated()).then(result=>{
+      if(result.role==2){
+        this.admin = true;
+      }
+    })
+
     this.initialForm();
     this.onLoadMeeting();
   }
@@ -28,6 +34,7 @@ export class MeetingComponent implements OnInit {
   }
 
   editorContent:string;
+  admin:boolean=false;
 
   onSubmit(){
     var model = {
@@ -37,6 +44,7 @@ export class MeetingComponent implements OnInit {
     }
     this.meeting.postMeeting(model).then(result=>{
       this.alert.success("เพิ่มข้อมูลสำเร็จ !");
+      this.onLoadMeeting();
     })
   }
 

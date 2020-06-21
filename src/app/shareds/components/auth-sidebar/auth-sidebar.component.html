@@ -11,8 +11,13 @@
         <!-- การแสดงข้อความจาก JSON -->
         {{ UserLogin.firstname }} {{ UserLogin.lastname }}
       </p>
-      <p class="app-sidebar__user-designation">
-        <small>{{ UserLogin.position }}</small>
+      <p class="app-sidebar__user-designation ml-2 text-warning">
+        <span *ngIf="UserLogin.role==1">
+          นักศึกษา
+        </span>
+        <span *ngIf="UserLogin.role==2">
+          ครูอาจารย์
+        </span>
       </p>
     </div>
   </div>
@@ -23,7 +28,8 @@
           <span class="app-menu__label">แดชบอร์ด</span>
         </a>
       </li>
-      <li class="treeview" routerLinkActive="is-expanded">
+
+      <li *ngIf="UserLogin.role==2" class="treeview" routerLinkActive="is-expanded">
         <a class="app-menu__item"  href="#" data-toggle="treeview">
           <i class="app-menu__icon fa fa-users"></i>
           <span class="app-menu__label">จัดการสมาชิก</span>
@@ -42,32 +48,32 @@
           </li>
         </ul>
       </li>
-    <li>
+    <li *ngIf="UserLogin.role==1">
       <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Profile]" routerLinkActive="active">
         <i class="app-menu__icon fa fa-address-card"></i>
         <span class="app-menu__label">จัดการข้อมูลส่วนตัว</span>
       </a>
     </li>
-    <li>
+    <li *ngIf="UserLogin.role==1 || UserLogin.role==2">
       <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Observe]" routerLinkActive="active">
         <i class="app-menu__icon fa fa-search"></i>
         <span class="app-menu__label">รายละเอียดสังเกตการสอน</span>
       </a>
     </li>
     <!-- นักศึกษามองเห็น และเข้าได้ -->
-    <li>
+    <li *ngIf="UserLogin.role==1">
       <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Research]" routerLinkActive="active">
         <i class="app-menu__icon 	fa fa-flask"></i>
         <span class="app-menu__label">การทำวิจัยในชั้นเรียน</span>
       </a>
     </li>
-    <li>
+    <li *ngIf="UserLogin.role==1">
       <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Teaching]" routerLinkActive="active">
         <i class="app-menu__icon fa fa-youtube-play"></i>
         <span class="app-menu__label">การฝึกประสบกาณ์วิชาชีพ</span>
       </a>
     </li>
-    <li>
+    <li *ngIf="UserLogin.role==1 || UserLogin.role==2">
       <a class="app-menu__item" [routerLink]="['/', AppURL.Authen, AuthURL.Meeting]" routerLinkActive="active">
         <i class="app-menu__icon fa fa-commenting-o"></i>
         <span class="app-menu__label">ประชุมแผนการสอน</span>

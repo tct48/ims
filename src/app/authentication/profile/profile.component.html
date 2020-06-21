@@ -8,111 +8,111 @@
             <div class="row">
                 <div class="col-md-10">
                     <!-- card-1 -->
+                    <form [formGroup]="form">
                     <div class="card">
                         <!-- card-header -->
                         <div class="card-header card-band-pink">
                             ข้อมูลสถานศึกษา <b>(สังเกตการสอน)</b>
                         </div>
+                        
                         <!-- card-body -->
-                        <div class="card-body px-3">
-                            <form [formGroup]="form">
-                                <div class="form-group">
-                                    <input formControlName="name" placeholder="ชื่อสถานศึกษา*" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input formControlName="address" placeholder="ที่อยู่*" class="form-control">
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input formControlName="subdistrict" placeholder="แขวง/ตำบล*" class="form-control">
+                            <div class="card-body px-3">
+                                    <div class="form-group">
+                                        <input formControlName="name" placeholder="ชื่อสถานศึกษา*" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input formControlName="address" placeholder="ที่อยู่*" class="form-control">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input formControlName="sub_district" placeholder="แขวง/ตำบล*" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input formControlName="district" placeholder="เขต/อำเภอ*" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input formControlName="district" placeholder="เขต/อำเภอ*" class="form-control">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input formControlName="province" placeholder="จังหวัด*" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input formControlName="post_code" placeholder="รหัสไปรษณีย์*" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input formControlName="province" placeholder="จังหวัด*" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input formControlName="post_code" placeholder="รหัสไปรษณีย์*" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
 
                     <!-- card-2 -->
-                    <div class="card my-3">
-                        <!-- card-header -->
-                        <div class="card-header card-band-green">
-                            ข้อมูลสถานศึกษา <b>(ออกฝึกสอน)</b>
+                    
+                        <div class="card my-3">
+                            <!-- card-header -->
+                            <div class="card-header card-band-green">
+                                ข้อมูลสถานศึกษา <b>(ออกฝึกสอน)</b>
+                            </div>
+                            <!-- card-body -->
+                            <div class="card-body px-3">
+                                <div class="form-check jumbotron py-2 px-5">
+                                    <input class="form-check-input" (change)="checkValue(isChecked?'True':'False')" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1" >
+                                        สถานศึกษาเดียวกันกับที่สังเกตการสอน
+                                    </label>
+                                </div>
+                                    <div class="form-group">
+                                        <input formControlName="name2" placeholder="ชื่อสถานศึกษา*" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input formControlName="address2" placeholder="ที่อยู่*" class="form-control">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input formControlName="sub_district2" placeholder="แขวง/ตำบล*" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input formControlName="district2"  placeholder="เขต/อำเภอ*" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input formControlName="province2"  placeholder="จังหวัด*" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input formControlName="post_code2" placeholder="รหัสไปรษณีย์*" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
-                        <!-- card-body -->
-                        <div class="card-body px-3">
-                            <div class="form-check jumbotron py-2 px-5">
-                                <input class="form-check-input" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'True':'False')" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1" >
-                                    สถานศึกษาเดียวกันกับที่สังเกตการสอน
-                                </label>
-                              </div>
-                            <form>
-                                <div class="form-group">
-                                    <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="ชื่อสถานศึกษา*" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input [(ngModel)]="address" [ngModelOptions]="{standalone: true}" placeholder="ที่อยู่*" class="form-control">
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input [(ngModel)]="sub_district" [ngModelOptions]="{standalone: true}" placeholder="แขวง/ตำบล*" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input [(ngModel)]="district" [ngModelOptions]="{standalone: true}" placeholder="เขต/อำเภอ*" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input [(ngModel)]="province" [ngModelOptions]="{standalone: true}" placeholder="จังหวัด*" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input [(ngModel)]="post_code" [ngModelOptions]="{standalone: true}" placeholder="รหัสไปรษณีย์*" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
 
-                    <!-- card-3 -->
-                    <div class="card">
-                        <div class="card-header">
-                            ข้อมูลครูผู้ดูแล
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <input [(ngModel)]="teacher" placeholder="ชื่อจริง-นามสกุล ครูผู้ดูแล*" class="form-control">
+                        <!-- card-3 -->
+                        <div class="card">
+                            <div class="card-header">
+                                ข้อมูลครูผู้ดูแล
                             </div>
-                            <div class="form-group">
-                                <input [(ngModel)]="phone"  placeholder="เบอร์โทรศัพท์*" class="form-control">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <input  formControlName="teacher_name" placeholder="ชื่อจริง-นามสกุล ครูผู้ดูแล*" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input  formControlName="phone"  placeholder="เบอร์โทรศัพท์*" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <!-- circle-progress -->
                 <div class="col-md-2">

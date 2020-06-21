@@ -13,6 +13,7 @@ import { CreateObserveComponent } from './observe/create-observe/create-observe.
 import { MeetingComponent } from './meeting/meeting.component';
 import { DateAgoPipe } from '../pipes/date-ago.pipe';
 import { ViewTeachingComponent } from './teaching/view-teaching/view-teaching.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DashboardComponent, MemberComponent, CreateMemberComponent, ProfileComponent, ResearchComponent, TeachingComponent, ObserveComponent, CreateObserveComponent, MeetingComponent, ViewTeachingComponent],
@@ -20,6 +21,7 @@ import { ViewTeachingComponent } from './teaching/view-teaching/view-teaching.co
     CommonModule,
     AuthenticationRouting,
     SharedModule,
+    FormsModule
   ]
 })
 export class AuthenticationModule { }

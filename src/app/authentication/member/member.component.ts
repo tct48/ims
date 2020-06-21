@@ -54,10 +54,7 @@ export class MemberComponent implements OnInit {
   loadMember() {
     this.option.year = this.selected;
     this.option.searchType = this.radioModel;
-
-    console.log(this.option)
     this.member.getMembers(this.option).then((result) => {
-      console.log(result)
       this.total_items = result.total_items;
       this.items = result.items;
     });
@@ -112,6 +109,18 @@ export class MemberComponent implements OnInit {
   onLocation(location: string) {
     var url: string = 'https://www.google.co.th/maps/search/' + location;
     window.open(url, '_blank');
+  }
+  
+  onChangeRole(_id:string,role:number){
+    var model=1;
+    if(role==1){
+      model=2;
+    }
+
+    this.member.updateMember(_id,{role:model}).then(result=>{
+      this.alert.success("เปลี่ยนสิทธิ์การใช้งานสำเร็จ");
+      this.loadMember();
+    })
   }
 
   onDelete(_id:string){

@@ -36,6 +36,11 @@ export class ObserveService {
     }
   }
 
+  getObserveDetailByID(_id:string){
+    return this.http.requestGet(`observe_detail/data/${_id}`)
+      .toPromise() as Promise<any>
+  }
+
   deleteObserveDetail(id: any) {
     return this.http.requestDelete(`observe_detail`,id)
     .toPromise() as Promise<IObserveDetail>;

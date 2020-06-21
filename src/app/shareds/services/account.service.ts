@@ -95,7 +95,7 @@ export interface IAccount {
 
   position?: string;
   image?: string;
-  role?: IRoleAccount;
+  role?: number;
   created?: Date;
   updated?: Date;
 

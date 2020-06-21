@@ -35,9 +35,12 @@ import 'froala-editor/js/plugins/url.min.js';
 import 'froala-editor/js/plugins/video.min.js';
 import { MemberService } from './services/member.service';
 import { DateAgoPipe } from '../pipes/date-ago.pipe';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
+    CommonModule,
     FormsModule,
     RouterModule,
     SignaturePadModule,

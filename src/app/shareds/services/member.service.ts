@@ -86,7 +86,7 @@ export class MemberService {
 
 
   //แก้ไขสมาชิก
-  updateMember(id: any, model: IAccount) {
+  updateMember(id: any, model: any) {
     if (id != this.account.UserLogin._id) {
       // this.account.mockUserItems = [];
       return this.http

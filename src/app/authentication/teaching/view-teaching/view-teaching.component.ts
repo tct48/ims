@@ -32,9 +32,7 @@ export class ViewTeachingComponent implements OnInit {
 
   loadTeachingByID(){
     this.teaching.getOnlineLearningByID(this._id,this.authen.getAuthenticated()).then(result=>{
-      
       this.item = result.item;
-      console.log(this.item);
     })
   }
 
