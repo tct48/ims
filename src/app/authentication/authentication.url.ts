@@ -7,5 +7,6 @@ export const AuthURL = {
     Teaching: 'teaching',
     Observe: 'observe',
     ObserveCreate: 'observe-create',
-    Meeting: 'meeting'
+    Meeting: 'meeting',
+    TeachingView:'teaching-view'
 }

@@ -13,9 +13,11 @@
     </div>
   </div>
 
-  <div class="my-2">
-    {{ total_hour }} / 100 % (12 ชั่วโมง)
+  <div class="card my-2">
+    <div class="card-body">
+      {{ total_hour }} / 100 % (12 ชั่วโมง)
     <progressbar class="progress-striped active" [striped]="true"  [value]="total_hour" [max]="100" [animate]="true"><i></i></progressbar>
+    </div>
   </div>
 
   <!-- table -->

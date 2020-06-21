@@ -9,6 +9,7 @@ import { TeachingComponent } from './teaching/teaching.component';
 import { ObserveComponent } from './observe/observe.component';
 import { CreateObserveComponent } from './observe/create-observe/create-observe.component';
 import { MeetingComponent } from './meeting/meeting.component';
+import { ViewTeachingComponent } from './teaching/view-teaching/view-teaching.component';
 
 const RouteLists: Routes = [
   { path: '', redirectTo: AuthURL.Dashboard, pathMatch: 'full' },
@@ -20,7 +21,8 @@ const RouteLists: Routes = [
   { path: AuthURL.Teaching, component: TeachingComponent },
   { path: AuthURL.Observe, component: ObserveComponent },
   { path: AuthURL.ObserveCreate, component: CreateObserveComponent },
-  { path: AuthURL.Meeting, component: MeetingComponent }
+  { path: AuthURL.Meeting, component: MeetingComponent },
+  { path: AuthURL.TeachingView, component: ViewTeachingComponent }
 ];
 
 export const AuthenticationRouting = RouterModule.forChild(RouteLists);

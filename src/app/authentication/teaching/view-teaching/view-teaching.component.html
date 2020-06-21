@@ -1,0 +1,28 @@
+<app-auth-content>
+    <div class="card">
+        <div class="card-header">
+          <nav aria-label="breadcrumb" *ngIf="item">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item pointer text-primary" [routerLink]="['/authentication/teaching']" routerLinkActive="router-link-active" >ฝึกประสบการณ์วิชาชีพ</li>
+              <li class="breadcrumb-item active" aria-current="page">วันที่ {{ item.date | date:'dd-MMMM-yyyy' }}</li>
+            </ol>
+          </nav>
+          <h3 class="mb-2">
+            ฝึกประสบการณ์วิชาชีพ
+          </h3>
+        </div>
+      </div>
+      
+      <div class="card my-3" *ngIf="item">
+        <div class="card-header">
+          <h4>สอนวิชา : {{ item.course }}</h4>
+          <h6 class="text-muted">เรื่อง : {{ item.title }}</h6>
+        </div>
+
+        <div class="card-body">
+          <p class="bolder text-info breadcrumb">รายละเอียดการสอน :</p>
+          <p [innerHTML]="item.detail"></p>
+        </div>
+      </div>
+</app-auth-content>
+

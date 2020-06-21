@@ -12,18 +12,14 @@
             เพิ่มข้อมูลประชุมแผนการสอน
         </div>
         <div class="card-body">
-            <form>
+            <form [formGroup]="form">
                 <div class="form-group">
                   <label>วันที่ประชุม :</label>
-                  <input type="text" placeholder="วันที่ประชุม*" class="form-control" bsDatepicker>
-                </div>
-                <div class="form-group">
-                    <label>แนบไฟล์ :</label>
-                    <input type="text" placeholder="แนบไฟล์*" class="form-control" bsDatepicker>
+                  <input formControlName="date" type="text" placeholder="วันที่ประชุม*" class="form-control" bsDatepicker>
                 </div>
                 <div class="form-group">
                   <label>รายละเอียด :</label>
-                  <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+                  <div formControlName="message" [froalaEditor] [(froalaModel)]="editorContent"></div>
                 </div>
             </form>
         </div> 
@@ -33,4 +29,15 @@
             </button>
         </div>
     </div>
+
+    <div *ngFor="let data of items" class="card my-3">
+        <div class="card-header" style="vertical-align: middle;">
+          <h5 >
+            {{ data.date | date:'dd-MMMM-yyyy (HH:MM a)' }}
+            <button placement="bottom" (click)="onDelete(data._id)"  tooltip="ลบข้อมูล" class="btn text-center" style="float:right;background-color: #ebcb8b;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-trash"></i></button>
+          </h5>
+        </div>
+        <div class="card-body" [innerHTML]="data.message">
+        </div>
+      </div>
 </app-auth-content>

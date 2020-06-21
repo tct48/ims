@@ -12,28 +12,28 @@
             เพิ่มข้อมูลวิจัยในชั้นเรียน
         </div>
         <div class="card-body">
-            <form>
+            <form [formGroup]="form">
                 <div class="form-group">
                   <label>วันที่ฝึกสอน :</label>
-                  <input type="text" placeholder="วันที่ฝึกสอน*" class="form-control" bsDatepicker>
+                  <input type="text" formControlName="date" placeholder="วันที่ฝึกสอน*" class="form-control" bsDatepicker>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>รายวิชา :</label>
-                      <input type="text" placeholder="รายวิชา*" class="form-control">
+                      <input formControlName="course" type="text" placeholder="รายวิชา*" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label>จำนวนชั่วโมง :</label>
-                      <input type="number" placeholder="จำนวนชั่วโมง*" class="form-control" min="1">
+                      <label>เรื่องที่สอน :</label>
+                      <input formControlName="title" type="text" placeholder="เรื่องที่สอน*" class="form-control" min="1">
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>รายละเอียด :</label>
-                  <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+                  <div formControlName="detail" [froalaEditor] [(froalaModel)]="editorContent"></div>
                 </div>
             </form>
         </div> 
@@ -52,22 +52,25 @@
             <table class="table">
               <thead class="thead-dark text-center">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">วิจัยในชั้นเรียน</th>
-                  <th scope="col">รายละเอียด</th>
+                  <th scope="col">วันที่</th>
+                  <th scope="col">วิชาที่สอน</th>
+                  <th scope="col">เรื่องที่สอน</th>
                   <th scope="col">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let data of items;">
                   <td class="text-center" scope="row" style="vertical-align: middle;">
-                        1
-                  <td style="vertical-align: middle;">การส่งเสริมทักษะการอ่าน (บทที่ 1)</td>
-                  <td style="vertical-align: middle;">...</td>
+                    {{ data.date | date:'dd/MMMM/yyyy (HH:MM a)'}}
+                  <td style="vertical-align: middle;">
+                    {{data.course}}
+                  </td>
+                  <td style="vertical-align: middle;">
+                    <span class="text-primary">(เรื่อง {{data.title}})</span>
+                  </td>
                   <td class="text-center" style="vertical-align: middle;">
-                    <button placement="bottom"  tooltip="ดูข้อมูล" class="btn text-center" style="background-color: #5E81AC;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-eye"></i></button>
-                    <button placement="bottom"  tooltip="แก้ไขข้อมูล" class="btn mx-3 text-center" style="background-color: #88c0d0;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-pencil"></i></button>
-                    <button placement="bottom"  tooltip="ลบข้อมูล" class="btn text-center" style="background-color: #ebcb8b;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-trash"></i></button>
+                    <button placement="bottom" (click)="onView(data._id)"  tooltip="ดูข้อมูล" class="btn text-center mx-3" style="background-color: #5E81AC;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-eye"></i></button>
+                    <button placement="bottom" (click)="onDelete(data._id)"  tooltip="ลบข้อมูล" class="btn text-center" style="background-color: #ebcb8b;color:white;padding:6px 4px 6px 8px;"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>
@@ -76,11 +79,9 @@
         </div>
         <!-- pagination -->
         <div class="card-footer">
-            <div class="row">
-                <div class="col-xs-12 col-12">
-                  <pagination previousText="ก่อนหน้า" nextText="ถัดไป" [totalItems]="155" [rotate]="rotate" [maxSize]="maxSize"></pagination>
-                </div>
-              </div>
+          <p class="text-bold text-right">
+            จำนวนทั้งสิ้น {{ total_items }}
+          </p>
         </div>
     </div>
 

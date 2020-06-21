@@ -12,9 +12,10 @@ import { ObserveComponent } from './observe/observe.component';
 import { CreateObserveComponent } from './observe/create-observe/create-observe.component';
 import { MeetingComponent } from './meeting/meeting.component';
 import { DateAgoPipe } from '../pipes/date-ago.pipe';
+import { ViewTeachingComponent } from './teaching/view-teaching/view-teaching.component';
 
 @NgModule({
-  declarations: [DashboardComponent, MemberComponent, CreateMemberComponent, ProfileComponent, ResearchComponent, TeachingComponent, ObserveComponent, CreateObserveComponent, MeetingComponent],
+  declarations: [DashboardComponent, MemberComponent, CreateMemberComponent, ProfileComponent, ResearchComponent, TeachingComponent, ObserveComponent, CreateObserveComponent, MeetingComponent, ViewTeachingComponent],
   imports: [
     CommonModule,
     AuthenticationRouting,
