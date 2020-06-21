@@ -11,7 +11,8 @@ const RouterLists: Routes = [
     { path: AppURL.Register, component: RegisterComponent },
     {
         // path:AppURL.Authen, loadChildren:()=> import ('./authentication/authentication.module').then(m=>{m.AuthenticationModule}),
-        path:AppURL.Authen, loadChildren:()=> AuthenticationModule
+        path:AppURL.Authen, loadChildren:()=> AuthenticationModule,
+        // canActivate:[AuthenticationGuard]
         // path:AppURL.Authen, loadChildren:()=> import ('./authentication/authentication.module').then(m=>{m.AuthenticationModule}).catch( err => console.log('Oh no!')),
         // canActivate:[AuthenticationGuard] import('./customers/customers.module').then(m => m.CustomersModule)
         

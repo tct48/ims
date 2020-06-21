@@ -1,41 +1,50 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, UrlSegment, Route } from '@angular/router';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+  Router,
+  UrlSegment,
+  Route,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenService } from '../shareds/services/authen.service';
 import { AppURL } from '../app.url';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(
-    private authen:AuthenService,
-    private router:Router
-  ){
-
-  }
+  constructor(private authen: AuthenService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.authen.getAuthenticated())
-      return true;
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    if (this.authen.getAuthenticated()) return false;
 
-      this.router.navigate(['/',AppURL.Login,{ returnURL:state.url}]);
-      return false;
+    this.router.navigate(['/', AppURL.Login, { returnURL: state.url }]);
+    return false; //false คือปิดกั้น
   }
-
-  canActivateChile(
-    next:ActivatedRouteSnapshot,
-    state:RouterStateSnapshot):Observable<boolean | UrlTree > | Promise <boolean | UrlTree> | boolean | UrlTree {
-      return true;
-    }
-
-  canLoad(
-    route:Route,
-    segmants:UrlSegment[]
-  ):Observable<boolean> | Promise<boolean> | boolean{
+  canActivateChild(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
     return true;
   }
-  
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return true;
+  }
 }

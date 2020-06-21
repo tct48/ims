@@ -37,10 +37,12 @@ import { MemberService } from './services/member.service';
 import { DateAgoPipe } from '../pipes/date-ago.pipe';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   imports: [
     CommonModule,
+    NgxEditorModule,
     FormsModule,
     RouterModule,
     SignaturePadModule,
@@ -74,6 +76,7 @@ import { BrowserModule } from '@angular/platform-browser';
     AuthSidebarComponent,
     // component
     TooltipModule,
+    NgxEditorModule,
     ButtonsModule,
     TypeaheadModule,
     PaginationModule,

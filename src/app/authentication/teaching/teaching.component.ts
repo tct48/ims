@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from '../authentication.url';
 
+
 @Component({
   selector: 'app-teaching',
   templateUrl: './teaching.component.html',
@@ -36,6 +37,8 @@ export class TeachingComponent implements OnInit {
     
     this.initialForm();
   }
+
+  
 
   ngOnInit(): void {}
   _id:string;

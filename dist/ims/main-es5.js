@@ -349,9 +349,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       path: _app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Authen,
       loadChildren: function loadChildren() {
         return _authentication_authentication_module__WEBPACK_IMPORTED_MODULE_3__["AuthenticationModule"];
-      } // path:AppURL.Authen, loadChildren:()=> import ('./authentication/authentication.module').then(m=>{m.AuthenticationModule}).catch( err => console.log('Oh no!')),
-      // canActivate:[AuthenticationGuard] import('./customers/customers.module').then(m => m.CustomersModule)
-
+      }
     }];
 
     var AppRouting = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(RouterLists);
@@ -6767,29 +6765,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    var _app_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../app.url */
+    "./src/app/app.url.ts");
+    /* harmony import */
+
+
+    var _authentication_authentication_url__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../authentication/authentication.url */
+    "./src/app/authentication/authentication.url.ts");
+    /* harmony import */
+
+
+    var _shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../shareds/services/authen.service */
     "./src/app/shareds/services/authen.service.ts");
     /* harmony import */
 
 
-    var _shareds_services_account_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var _shareds_services_account_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ../shareds/services/account.service */
     "./src/app/shareds/services/account.service.ts");
     /* harmony import */
 
 
-    var _shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../shareds/services/alert.service */
     "./src/app/shareds/services/alert.service.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
     var UserRoleGuard = /*#__PURE__*/function () {
-      function UserRoleGuard(authen, account, alert) {
+      function UserRoleGuard(authen, account, alert, router) {
         _classCallCheck(this, UserRoleGuard);
 
         this.authen = authen;
         this.account = account;
         this.alert = alert;
+        this.router = router;
+        this.AppURL = _app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"];
+        this.AuthURL = _authentication_authentication_url__WEBPACK_IMPORTED_MODULE_2__["AuthURL"];
       }
 
       _createClass(UserRoleGuard, [{
@@ -6802,10 +6821,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var roles = next.data.roles;
 
             _this35.account.getUserLogin(_this35.authen.getAuthenticated()).then(function (userLogin) {
+              console.log(roles.filter(function (item) {
+                return item == userLogin.role;
+              }).length);
               if (roles.filter(function (item) {
                 return item == userLogin.role;
               }).length > 0) resolve(true);else {
                 _this35.alert.notify('คุณไม่มีสิทธิ์ในการเข้าถึง URL ดังกล่าว !', 'danger');
+
+                _this35.router.navigate(['/', _app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Authen, _authentication_authentication_url__WEBPACK_IMPORTED_MODULE_2__["AuthURL"].Dashboard]);
 
                 resolve(false);
               }
@@ -6821,7 +6845,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     UserRoleGuard.ɵfac = function UserRoleGuard_Factory(t) {
-      return new (t || UserRoleGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_1__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_account_service__WEBPACK_IMPORTED_MODULE_2__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_3__["AlertService"]));
+      return new (t || UserRoleGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_3__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_account_service__WEBPACK_IMPORTED_MODULE_4__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]));
     };
 
     UserRoleGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
@@ -6839,11 +6863,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }]
       }], function () {
         return [{
-          type: _shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_1__["AuthenService"]
+          type: _shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_3__["AuthenService"]
         }, {
-          type: _shareds_services_account_service__WEBPACK_IMPORTED_MODULE_2__["AccountService"]
+          type: _shareds_services_account_service__WEBPACK_IMPORTED_MODULE_4__["AccountService"]
         }, {
-          type: _shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_3__["AlertService"]
+          type: _shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]
         }];
       }, null);
     })();
@@ -9206,7 +9232,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _angular_common__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(
     /*! @angular/common */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js"); // component module
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+    /* harmony import */
+
+
+    var ngx_editor__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(
+    /*! ngx-editor */
+    "./node_modules/ngx-editor/__ivy_ngcc__/fesm2015/ngx-editor.js"); // component module
     // for froala
 
 
@@ -9222,7 +9254,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return new (t || SharedModule)();
       },
       providers: [_services_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"], _services_member_service__WEBPACK_IMPORTED_MODULE_31__["MemberService"]],
-      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"].withConfig({
+      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"], ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"].withConfig({
         warnOnNgModelWithFormControl: 'never'
       }), ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"].forRoot(), ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"].forRoot(), ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"].forRoot(), angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"].forRoot(), ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"].forRoot(), angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"].forRoot(), ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"].forRoot(), ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"].forRoot({
         "backgroundOpacity": 1,
@@ -9235,15 +9267,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         "showBackground": false,
         "startFromZero": false
       })], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"], // component
-      ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]]
+      ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](SharedModule, {
         declarations: [_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_1__["AuthContentComponent"], _components_auth_navbar_auth_navbar_component__WEBPACK_IMPORTED_MODULE_2__["AuthNavbarComponent"], _components_auth_sidebar_auth_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["AuthSidebarComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"], ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]],
         exports: [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"], _components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_1__["AuthContentComponent"], _components_auth_navbar_auth_navbar_component__WEBPACK_IMPORTED_MODULE_2__["AuthNavbarComponent"], _components_auth_sidebar_auth_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["AuthSidebarComponent"], // component
-        ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]]
+        ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]]
       });
     })();
     /*@__PURE__*/
@@ -9253,7 +9285,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SharedModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"].withConfig({
+          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"], ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"].withConfig({
             warnOnNgModelWithFormControl: 'never'
           }), ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"].forRoot(), ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"].forRoot(), ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"].forRoot(), angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"].forRoot(), ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"].forRoot(), angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"].forRoot(), ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"].forRoot(), ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"].forRoot({
             "backgroundOpacity": 1,
@@ -9267,7 +9299,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             "startFromZero": false
           })],
           exports: [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"], _components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_1__["AuthContentComponent"], _components_auth_navbar_auth_navbar_component__WEBPACK_IMPORTED_MODULE_2__["AuthNavbarComponent"], _components_auth_sidebar_auth_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["AuthSidebarComponent"], // component
-          ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]],
+          ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]],
           declarations: [_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_1__["AuthContentComponent"], _components_auth_navbar_auth_navbar_component__WEBPACK_IMPORTED_MODULE_2__["AuthNavbarComponent"], _components_auth_sidebar_auth_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["AuthSidebarComponent"]],
           providers: [_services_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"], _services_member_service__WEBPACK_IMPORTED_MODULE_31__["MemberService"]]
         }]

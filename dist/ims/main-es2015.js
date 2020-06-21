@@ -195,9 +195,7 @@ const RouterLists = [
     { path: _app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Register, component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_4__["RegisterComponent"] },
     {
         // path:AppURL.Authen, loadChildren:()=> import ('./authentication/authentication.module').then(m=>{m.AuthenticationModule}),
-        path: _app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Authen, loadChildren: () => _authentication_authentication_module__WEBPACK_IMPORTED_MODULE_3__["AuthenticationModule"]
-        // path:AppURL.Authen, loadChildren:()=> import ('./authentication/authentication.module').then(m=>{m.AuthenticationModule}).catch( err => console.log('Oh no!')),
-        // canActivate:[AuthenticationGuard] import('./customers/customers.module').then(m => m.CustomersModule)
+        path: _app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Authen, loadChildren: () => _authentication_authentication_module__WEBPACK_IMPORTED_MODULE_3__["AuthenticationModule"],
     }
 ];
 const AppRouting = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(RouterLists);
@@ -3302,19 +3300,28 @@ RegisterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserRoleGuard", function() { return UserRoleGuard; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shareds/services/authen.service */ "./src/app/shareds/services/authen.service.ts");
-/* harmony import */ var _shareds_services_account_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shareds/services/account.service */ "./src/app/shareds/services/account.service.ts");
-/* harmony import */ var _shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shareds/services/alert.service */ "./src/app/shareds/services/alert.service.ts");
+/* harmony import */ var _app_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app.url */ "./src/app/app.url.ts");
+/* harmony import */ var _authentication_authentication_url__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../authentication/authentication.url */ "./src/app/authentication/authentication.url.ts");
+/* harmony import */ var _shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shareds/services/authen.service */ "./src/app/shareds/services/authen.service.ts");
+/* harmony import */ var _shareds_services_account_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shareds/services/account.service */ "./src/app/shareds/services/account.service.ts");
+/* harmony import */ var _shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shareds/services/alert.service */ "./src/app/shareds/services/alert.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+
+
 
 
 
 
 
 class UserRoleGuard {
-    constructor(authen, account, alert) {
+    constructor(authen, account, alert, router) {
         this.authen = authen;
         this.account = account;
         this.alert = alert;
+        this.router = router;
+        this.AppURL = _app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"];
+        this.AuthURL = _authentication_authentication_url__WEBPACK_IMPORTED_MODULE_2__["AuthURL"];
     }
     canActivate(next, state) {
         const ss = next.data.roles;
@@ -3323,10 +3330,12 @@ class UserRoleGuard {
             this.account
                 .getUserLogin(this.authen.getAuthenticated())
                 .then(userLogin => {
+                console.log(roles.filter(item => item == userLogin.role).length);
                 if (roles.filter(item => item == userLogin.role).length > 0)
                     resolve(true);
                 else {
                     this.alert.notify('คุณไม่มีสิทธิ์ในการเข้าถึง URL ดังกล่าว !', 'danger');
+                    this.router.navigate(['/', _app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Authen, _authentication_authentication_url__WEBPACK_IMPORTED_MODULE_2__["AuthURL"].Dashboard]);
                     resolve(false);
                 }
             })
@@ -3335,14 +3344,14 @@ class UserRoleGuard {
         const roles = next.data.roles;
     }
 }
-UserRoleGuard.ɵfac = function UserRoleGuard_Factory(t) { return new (t || UserRoleGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_1__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_account_service__WEBPACK_IMPORTED_MODULE_2__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_3__["AlertService"])); };
+UserRoleGuard.ɵfac = function UserRoleGuard_Factory(t) { return new (t || UserRoleGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_3__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_account_service__WEBPACK_IMPORTED_MODULE_4__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"])); };
 UserRoleGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: UserRoleGuard, factory: UserRoleGuard.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](UserRoleGuard, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return [{ type: _shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_1__["AuthenService"] }, { type: _shareds_services_account_service__WEBPACK_IMPORTED_MODULE_2__["AccountService"] }, { type: _shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_3__["AlertService"] }]; }, null); })();
+    }], function () { return [{ type: _shareds_services_authen_service__WEBPACK_IMPORTED_MODULE_3__["AuthenService"] }, { type: _shareds_services_account_service__WEBPACK_IMPORTED_MODULE_4__["AccountService"] }, { type: _shareds_services_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] }]; }, null); })();
 
 
 /***/ }),
@@ -4521,6 +4530,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var froala_editor_js_plugins_video_min_js__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(froala_editor_js_plugins_video_min_js__WEBPACK_IMPORTED_MODULE_30__);
 /* harmony import */ var _services_member_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./services/member.service */ "./src/app/shareds/services/member.service.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+/* harmony import */ var ngx_editor__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ngx-editor */ "./node_modules/ngx-editor/__ivy_ngcc__/fesm2015/ngx-editor.js");
 
 
 
@@ -4566,6 +4576,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 class SharedModule {
 }
 SharedModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: SharedModule });
@@ -4574,6 +4585,7 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _services_member_service__WEBPACK_IMPORTED_MODULE_31__["MemberService"]
     ], imports: [[
             _angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"],
+            ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"],
             _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"],
@@ -4603,6 +4615,7 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"],
         // component
         ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"],
+        ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"],
         ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"],
         ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"],
         ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"],
@@ -4614,6 +4627,7 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](SharedModule, { declarations: [_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_1__["AuthContentComponent"],
         _components_auth_navbar_auth_navbar_component__WEBPACK_IMPORTED_MODULE_2__["AuthNavbarComponent"],
         _components_auth_sidebar_auth_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["AuthSidebarComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"],
+        ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
         _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"],
         _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"], ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"], ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"], ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaEditorModule"], ngx_bootstrap_datepicker__WEBPACK_IMPORTED_MODULE_14__["BsDatepickerModule"], angular_froala_wysiwyg__WEBPACK_IMPORTED_MODULE_13__["FroalaViewModule"], ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_15__["ProgressbarModule"], ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"]], exports: [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
@@ -4624,6 +4638,7 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         _components_auth_sidebar_auth_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["AuthSidebarComponent"],
         // component
         ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"],
+        ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"],
         ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"],
         ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"],
         ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"],
@@ -4637,6 +4652,7 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
         args: [{
                 imports: [
                     _angular_common__WEBPACK_IMPORTED_MODULE_32__["CommonModule"],
+                    ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"],
                     _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
                     _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"],
                     _ng_plus_signature_pad__WEBPACK_IMPORTED_MODULE_11__["SignaturePadModule"],
@@ -4670,6 +4686,7 @@ SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
                     _components_auth_sidebar_auth_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["AuthSidebarComponent"],
                     // component
                     ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_9__["TooltipModule"],
+                    ngx_editor__WEBPACK_IMPORTED_MODULE_33__["NgxEditorModule"],
                     ngx_bootstrap_buttons__WEBPACK_IMPORTED_MODULE_10__["ButtonsModule"],
                     ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_5__["TypeaheadModule"],
                     ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_6__["PaginationModule"],
